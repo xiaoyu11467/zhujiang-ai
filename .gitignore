@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.env
+*.log
+uploads/
+coverage/
+.vite/
+dev.db
+dev.db-journal
+data-vector-*.json
