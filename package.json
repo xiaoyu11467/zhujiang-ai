@@ -1,0 +1,14 @@
+{
+  "name": "zhujiang-ai",
+  "version": "1.0.0",
+  "description": "珠江小智 AI校园助手",
+  "private": true,
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run start:dev"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^9.0.0"
+  }
+}
