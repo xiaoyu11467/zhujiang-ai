@@ -65,13 +65,13 @@ export default function ServicePage() {
       </header>
 
       {/* Hero */}
-      <section className="py-12 px-4 text-center">
-        <div className="w-24 h-24 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <span className="text-4xl">🎓</span>
+      <section className="py-8 sm:py-12 px-4 text-center">
+        <div className="w-20 h-20 sm:w-24 sm:h-24 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+          <span className="text-3xl sm:text-4xl">🎓</span>
         </div>
-        <h1 className="text-3xl font-bold text-slate-800 mb-2">Yu学长</h1>
-        <p className="text-slate-500 text-lg">华南农业大学珠江学院新生服务助手</p>
-        <p className="text-slate-400 text-sm mt-2 max-w-md mx-auto">
+        <h1 className="text-2xl sm:text-3xl font-bold text-slate-800 mb-2">Yu学长</h1>
+        <p className="text-slate-500 text-base sm:text-lg">华南农业大学珠江学院新生服务助手</p>
+        <p className="text-slate-400 text-xs sm:text-sm mt-2 max-w-md mx-auto">
           专注为华珠新生提供一站式入学服务，从报到到毕业，学长陪伴你的大学时光
         </p>
         <button

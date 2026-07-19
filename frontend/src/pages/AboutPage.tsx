@@ -23,11 +23,11 @@ export default function AboutPage() {
       </header>
 
       {/* Hero */}
-      <section className="py-12 px-4 text-center">
-        <span className="text-6xl">🌊</span>
-        <h1 className="text-3xl font-bold text-slate-800 mt-4 mb-2">珠江小智</h1>
-        <p className="text-lg text-slate-500">AI校园助手</p>
-        <p className="text-sm text-slate-400 mt-2 max-w-md mx-auto">
+      <section className="py-8 sm:py-12 px-4 text-center">
+        <span className="text-5xl sm:text-6xl">🌊</span>
+        <h1 className="text-2xl sm:text-3xl font-bold text-slate-800 mt-3 sm:mt-4 mb-2">珠江小智</h1>
+        <p className="text-base sm:text-lg text-slate-500">AI校园助手</p>
+        <p className="text-xs sm:text-sm text-slate-400 mt-2 max-w-md mx-auto">
           面向华南农业大学珠江学院大一新生的智能问答平台
         </p>
       </section>

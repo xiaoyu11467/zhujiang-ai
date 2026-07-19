@@ -20,9 +20,9 @@ export function ChatBubble({ message }: ChatBubbleProps) {
       </div>
 
       {/* 气泡 */}
-      <div className={`max-w-[75%] ${isUser ? 'items-end' : 'items-start'}`}>
+      <div className={`max-w-[85%] sm:max-w-[75%] ${isUser ? 'items-end' : 'items-start'}`}>
         <div
-          className={`px-4 py-3 rounded-2xl text-sm leading-relaxed
+          className={`px-3 sm:px-4 py-2 sm:py-3 rounded-2xl text-[13px] sm:text-sm leading-relaxed
             ${isUser
               ? 'bg-blue-600 text-white rounded-br-md'
               : 'bg-white border border-slate-200 text-slate-700 rounded-bl-md shadow-sm'

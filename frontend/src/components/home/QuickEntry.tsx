@@ -22,17 +22,17 @@ export function QuickEntry() {
   }
 
   return (
-    <div className="grid grid-cols-5 gap-3 max-w-xl mx-auto">
+    <div className="grid grid-cols-5 gap-1.5 sm:gap-3">
       {ENTRIES.map((entry) => (
         <button
           key={entry.label}
           onClick={() => handleClick(entry)}
-          className="flex flex-col items-center gap-2 p-3 rounded-2xl
+          className="flex flex-col items-center gap-1 sm:gap-2 p-2 sm:p-3 rounded-xl sm:rounded-2xl
             bg-white border border-slate-200 hover:border-blue-300
             hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer"
         >
-          <span className="text-2xl">{entry.icon}</span>
-          <span className="text-xs text-slate-600 font-medium whitespace-nowrap">
+          <span className="text-xl sm:text-2xl">{entry.icon}</span>
+          <span className="text-[10px] sm:text-xs text-slate-600 font-medium whitespace-nowrap">
             {entry.label}
           </span>
         </button>
