@@ -9,6 +9,18 @@
     "dev:backend": "cd backend && npm run start:dev"
   },
   "dependencies": {
+    "@alicloud/pop-core": "^1.8.0",
+    "ali-oss": "^6.23.0",
     "jsonwebtoken": "^9.0.0"
+  },
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "wrangler": "^4.112.0"
   }
 }
