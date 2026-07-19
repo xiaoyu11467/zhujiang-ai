@@ -44,7 +44,7 @@ export function WechatModal() {
           <p className="text-xs text-slate-500 mb-2">微信扫码或搜索添加</p>
           <div className="bg-white border-2 border-dashed border-slate-300 rounded-lg h-48 mx-auto w-48 flex items-center justify-center mb-3">
             <span className="text-slate-400 text-sm text-center">
-              请上传微信二维码<br />到 public/qrcode.png
+              <img src="/images/微信二维码.jpg" alt="Yu学长微信二维码" className="w-full h-full object-cover" />
             </span>
           </div>
           <div className="flex items-center justify-center gap-2">
