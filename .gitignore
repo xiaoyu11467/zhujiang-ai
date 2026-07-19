@@ -8,3 +8,6 @@ coverage/
 dev.db
 dev.db-journal
 data-vector-*.json
+
+.vercel
+.env*
