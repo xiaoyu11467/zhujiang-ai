@@ -40,7 +40,7 @@ export default function ChatPage() {
   }, [initialQuestion])
 
   return (
-    <div className="h-screen flex bg-slate-50">
+    <div className="h-screen sm:h-screen flex bg-slate-50" style={{ height: '100dvh' }}>
       {/* 侧边栏 */}
       <ChatSidebar />
 
