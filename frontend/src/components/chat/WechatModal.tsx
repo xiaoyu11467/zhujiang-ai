@@ -42,10 +42,8 @@ export function WechatModal() {
         {/* 微信号 */}
         <div className="bg-slate-50 rounded-xl p-4">
           <p className="text-xs text-slate-500 mb-2">微信扫码或搜索添加</p>
-          <div className="bg-white border-2 border-dashed border-slate-300 rounded-lg h-48 mx-auto w-48 flex items-center justify-center mb-3">
-            <span className="text-slate-400 text-sm text-center">
-              <img src="/images/微信二维码.jpg" alt="Yu学长微信二维码" className="w-full h-full object-cover" />
-            </span>
+          <div className="mx-auto w-40 sm:w-44 mb-3">
+            <img src="/images/微信二维码.jpg" alt="Yu学长微信二维码" className="w-full rounded-lg" />
           </div>
           <div className="flex items-center justify-center gap-2">
             <code className="text-base font-bold text-slate-800 bg-slate-100 px-3 py-1.5 rounded-lg select-all">
