@@ -14,7 +14,7 @@ export function ServiceCard() {
           <h4 className="font-semibold text-slate-800 text-sm sm:text-base">Yu学长</h4>
           <p className="text-[11px] sm:text-xs text-slate-500">华南农业大学珠江学院新生服务助手</p>
           <div className="flex flex-wrap gap-1 mt-1 sm:mt-1.5">
-            {['新生咨询', '生活指导', '学车', '用品推荐'].map((t) => (
+            {['新生咨询', '生活指导', '学车', '校园卡'].map((t) => (
               <span key={t} className="text-[9px] sm:text-[10px] text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded">
                 {t}
               </span>

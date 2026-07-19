@@ -28,6 +28,7 @@ export function WechatModal() {
             '🏠 生活指导',
             '🛍️ 用品推荐',
             '🚗 学车咨询',
+            '📱 校园卡办理',
             '🎯 服务推荐',
           ].map((tag) => (
             <span
