@@ -86,9 +86,9 @@ export default async function handler(req, res) {
     if (path === '/auth/login' && method === 'POST') return handleLogin(req, res)
 
     // Analytics
-    if (path === '/analytics/overview' && method === 'GET') return res.json({ totalConversations: conversations.size, totalMessages: 0, todayMessages: 0, todayConversations: 0, avgSatisfaction: 0 })
-    if (path === '/analytics/trend' && method === 'GET') return res.json([])
-    if (path === '/analytics/hot-questions' && method === 'GET') return res.json([])
+    if (path === '/analytics/overview' && method === 'GET') return handleAnalyticsOverview(req, res)
+    if (path === '/analytics/trend' && method === 'GET') return handleAnalyticsTrend(req, res)
+    if (path === '/analytics/hot-questions' && method === 'GET') return handleAnalyticsHotQuestions(req, res)
     if (path === '/analytics/track' && method === 'POST') return res.json({ ok: true })
 
     // 404
@@ -124,8 +124,8 @@ async function handleChatSend(req, res) {
   if (!apiKey || apiKey.includes('your-')) {
     // 无 API Key 时返回模拟回答
     const reply = `你好！我是珠江小智。关于「${question.slice(0, 30)}」这个问题，建议你登录学校官网 https://www.scauzj.edu.cn/ 查看最新信息，或者咨询辅导员。需要人工帮助可以联系 Yu学长（微信 yux0620x）。`
-    convMsgs.push({ role: 'user', content: question })
-    convMsgs.push({ role: 'assistant', content: reply })
+    convMsgs.push({ role: 'user', content: question, createdAt: new Date().toISOString() })
+    convMsgs.push({ role: 'assistant', content: reply, createdAt: new Date().toISOString() })
     messages.set(cId, convMsgs)
 
     res.setHeader('Content-Type', 'text/event-stream')
@@ -179,8 +179,8 @@ async function handleChatSend(req, res) {
       }
     }
 
-    convMsgs.push({ role: 'user', content: question })
-    convMsgs.push({ role: 'assistant', content: fullReply })
+    convMsgs.push({ role: 'user', content: question, createdAt: new Date().toISOString() })
+    convMsgs.push({ role: 'assistant', content: fullReply, createdAt: new Date().toISOString() })
     messages.set(cId, convMsgs)
   } catch (e) {
     res.write(`data: ${JSON.stringify({ type: 'error', content: 'AI服务暂时不可用: ' + e.message })}\n\n`)
@@ -232,6 +232,58 @@ function handleLogin(req, res) {
     return res.json({ accessToken: token, user: { id: '1', username, role: 'admin' } })
   }
   return res.status(401).json({ error: '用户名或密码错误' })
+}
+
+// ============ Analytics Handlers ============
+
+function handleAnalyticsOverview(req, res) {
+  let totalMsgs = 0
+  const today = new Date().toISOString().slice(0, 10)
+  let todayMsgs = 0
+  let todayConvs = 0
+
+  for (const [convId, conv] of conversations) {
+    const msgs = messages.get(convId) || []
+    totalMsgs += msgs.length
+    const created = conv.createdAt ? conv.createdAt.slice(0, 10) : ''
+    if (created === today) todayConvs++
+    for (const m of msgs) {
+      if (m.createdAt && m.createdAt.slice(0, 10) === today) todayMsgs++
+    }
+  }
+
+  return res.json({
+    totalConversations: conversations.size,
+    totalMessages: totalMsgs,
+    todayMessages: todayMsgs,
+    todayConversations: todayConvs,
+    avgSatisfaction: 0,
+  })
+}
+
+function handleAnalyticsTrend(req, res) {
+  const days = {}
+  for (const [convId, msgs] of messages) {
+    for (const m of msgs) {
+      if (!m.createdAt) continue
+      const d = m.createdAt.slice(0, 10)
+      days[d] = (days[d] || 0) + 1
+    }
+  }
+  return res.json(Object.entries(days).map(([date, count]) => ({ date, count })).sort())
+}
+
+function handleAnalyticsHotQuestions(req, res) {
+  const categories = { '选课': 0, '宿舍': 0, '转专业': 0, '奖学金': 0, '军训': 0, '报到': 0, '食堂': 0, '图书馆': 0, '考试': 0, '社团': 0 }
+  for (const [convId, msgs] of messages) {
+    for (const m of msgs) {
+      if (m.role !== 'user') continue
+      for (const [key] of Object.entries(categories)) {
+        if (m.content.includes(key)) categories[key]++
+      }
+    }
+  }
+  return res.json(Object.entries(categories).map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count))
 }
 
 // ============ 构建时加载知识库 ============
